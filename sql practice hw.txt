@@ -1,0 +1,967 @@
+
+Fatema Akter@DESKTOP-UFISPR4 MINGW64 /c
+$ psql postgres
+Password:
+psql: FATAL:  password authentication failed for user "Fa
+tema Akter"
+
+Fatema Akter@DESKTOP-UFISPR4 MINGW64 /c
+$ psql postgres
+Password:
+psql: FATAL:  password authentication failed for user "Fa
+tema Akter"
+
+Fatema Akter@DESKTOP-UFISPR4 MINGW64 /c
+$ psql postgres
+Password:
+psql: FATAL:  password authentication failed for user "Fa
+tema Akter"
+
+Fatema Akter@DESKTOP-UFISPR4 MINGW64 /c
+$
+
+Fatema Akter@DESKTOP-UFISPR4 MINGW64 /c
+$
+
+Fatema Akter@DESKTOP-UFISPR4 MINGW64 /c
+$ psql -U postgres
+Password for user postgres:
+psql (10.13)
+WARNING: Console code page (437) differs from Windows code page (1252)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+postgres=# \list
+postgres=# \du
+                                   List of roles
+ Role name |                         Attributes
+r of
+-----------+------------------------------------------------------------
+-----
+ b2002user | Cannot login
+ postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS
+
+
+postgres=# \c postgres
+You are now connected to database "postgres" as user "postgres".
+postgres=# \list
+                                                 List of databases
+   Name    |  Owner   | Encoding |          Collate           |
+            |   Access privileges
+-----------+----------+----------+----------------------------+---------
+------------+-----------------------
+ dvdrental | postgres | UTF8     | English_United States.1252 | English_
+States.1252 |
+ family    | postgres | UTF8     | English_United States.1252 | English_
+States.1252 |
+ postgres  | postgres | UTF8     | English_United States.1252 | English_
+States.1252 |
+ template0 | postgres | UTF8     | English_United States.1252 | English_
+States.1252 | =c/postgres          +
+           |          |          |                            |
+            | postgres=CTc/postgres
+ template1 | postgres | UTF8     | English_United States.1252 | English_
+States.1252 | =c/postgres          +
+           |          |          |                            |
+            | postgres=CTc/postgres
+(5 rows)
+
+
+postgres=# \dt
+Did not find any relations.
+postgres=# create role b20002user1;
+CREATE ROLE
+postgres=# \du
+                                    List of roles
+  Role name  |                         Attributes
+ber of
+-------------+----------------------------------------------------------
+-------
+ b20002user1 | Cannot login
+ b2002user   | Cannot login
+ postgres    | Superuser, Create role, Create DB, Replication, Bypass RL
+
+
+postgres=# CREATE ROLE b2002user2 WITH LOGIN SUPERUSER CREATEDB CONNECTI
+T-1 PASSWORD 'b2002user2'
+postgres-# \du
+                                    List of roles
+  Role name  |                         Attributes
+ber of
+-------------+----------------------------------------------------------
+-------
+ b20002user1 | Cannot login
+ b2002user   | Cannot login
+ postgres    | Superuser, Create role, Create DB, Replication, Bypass RL
+
+
+postgres-# CREATE ROLE b2002user2 WITH LOGIN SUPERUSER CREATEDB CONNECTI
+T-1 PASSWORD 'b2002user2';
+ERROR:  syntax error at or near "CREATE"
+LINE 2: CREATE ROLE b2002user2 WITH LOGIN SUPERUSER CREATEDB CONNECT...
+        ^
+postgres=# CREATE ROLE b2002user2 WITH LOGIN SUPERUSER CREATEDB CONNECTI
+T-1 PASSWORD 'b2002user2';
+CREATE ROLE
+postgres=# \du
+                                    List of roles
+  Role name  |                         Attributes
+ber of
+-------------+----------------------------------------------------------
+-------
+ b20002user1 | Cannot login
+ b2002user   | Cannot login
+ b2002user2  | Superuser, Create DB
+ postgres    | Superuser, Create role, Create DB, Replication, Bypass RL
+
+
+postgres=# \c b20002user2
+FATAL:  database "b20002user2" does not exist
+Previous connection kept
+postgres=# \c b2002user2
+FATAL:  database "b2002user2" does not exist
+Previous connection kept
+postgres=# delete  b2002user;
+ERROR:  syntax error at or near "b2002user"
+LINE 1: delete  b2002user;
+                ^
+postgres=# drop b2002user;
+ERROR:  syntax error at or near "b2002user"
+LINE 1: drop b2002user;
+             ^
+postgres=# \du
+                                    List of roles
+  Role name  |                         Attributes
+ber of
+-------------+----------------------------------------------------------
+-------
+ b20002user1 | Cannot login
+ b2002user   | Cannot login
+ b2002user2  | Superuser, Create DB
+ postgres    | Superuser, Create role, Create DB, Replication, Bypass RL
+
+
+postgres=# Drop DATABASE b2002user;
+ERROR:  database "b2002user" does not exist
+postgres=# DROP DATABASE b2002user;
+ERROR:  database "b2002user" does not exist
+postgres=# DROP ROLE b2002user;
+DROP ROLE
+postgres=# \DU
+Invalid command \DU. Try \? for help.
+postgres=# \du
+                                    List of roles
+  Role name  |                         Attributes
+ber of
+-------------+----------------------------------------------------------
+-------
+ b20002user1 | Cannot login
+ b2002user2  | Superuser, Create DB
+ postgres    | Superuser, Create role, Create DB, Replication, Bypass RL
+
+
+postgres=# CREATE DATABASE mydb;
+CREATE DATABASE
+postgres=# \list
+                                                 List of databases
+   Name    |  Owner   | Encoding |          Collate           |
+            |   Access privileges
+-----------+----------+----------+----------------------------+---------
+------------+-----------------------
+ dvdrental | postgres | UTF8     | English_United States.1252 | English_
+States.1252 |
+ family    | postgres | UTF8     | English_United States.1252 | English_
+States.1252 |
+ mydb      | postgres | UTF8     | English_United States.1252 | English_
+States.1252 |
+ postgres  | postgres | UTF8     | English_United States.1252 | English_
+States.1252 |
+ template0 | postgres | UTF8     | English_United States.1252 | English_
+
+Fatema Akter@DESKTOP-UFISPR4 MINGW64 /c
+$ psql -U postgres
+Password for user postgres:
+psql (10.13)
+WARNING: Console code page (437) differs from Windows code page (12
+         8-bit characters might not work correctly. See psql refere
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+postgres=# \du
+                                    List of roles
+  Role name  |                         Attributes
+er of
+-------------+-----------------------------------------------------
+------
+ b20002user1 | Cannot login
+ b2002user2  | Superuser, Create DB
+ postgres    | Superuser, Create role, Create DB, Replication, Bypa
+
+
+     |   Access privileges
+-----------+----------+----------+----------------------------+----
+----------
+ dvdrental | postgres | UTF8     | English_United States.1252 | Eng
+
+
+
+
+
+         |   Access privileges
+-----------+----------+----------+----------------------------+----
+---------+-----------------------
+ dvdrental | postgres | UTF8     | English_United States.1252 | Eng
+tes.1252 |
+ family    | postgres | UTF8     | English_United States.1252 | Eng
+tes.1252 |
+ mydb      | postgres | UTF8     | English_United States.1252 | Eng
+tes.1252 |
+ postgres  | postgres | UTF8     | English_United States.1252 | Eng
+tes.1252 |
+ template0 | postgres | UTF8     | English_United States.1252 | Eng
+tes.1252 | =c/postgres          +
+           |          |          |                            |
+         | postgres=CTc/postgres
+ template1 | postgres | UTF8     | English_United States.1252 | Eng
+tes.1252 | =c/postgres          +
+           |          |          |                            |
+         | postgres=CTc/postgres
+(6 rows)
+
+
+postgres=# \du
+                                    List of roles
+
+
+
+
+
+
+
+
+
+
+                                     Role name  |
+       Attributes                         | Member of
+-------------+-----------------------------------------------------
+-------+-----------
+ b20002user1 | Cannot login
+       | {}
+ b2002user2  | Superuser, Create DB
+       | {}
+ postgres    | Superuser, Create role, Create DB, Replication, Bypa
+ss RLS | {}
+
+
+postgres=# CREATE ROLE user1;
+CREATE ROLECREATE ROLE user2 WITH LOGIN SUPERUSER CREATEDB CREATERO
+LE INHERIT REPLICATION CONNECTION ;WORD
+ERROR:  syntax error at or near ";" List of roles
+LINE 1: ...PERUSER CREATEDB CREATEROLE INHERIT REPLICATION CONNECTI
+ON ;   | Member of
+
+   ^---+-----------
+postgres-# ;
+ERROR:  syntax error at or near "WORD"
+LINE 1: WORD | Superuser, Create DB
+        ^{}
+postgres=#   | Superuser, Create role, Create DB, Replication, Bypa
+postgres=#
+postgres=#   | Cannot login
+postgres=#
+postgres=#
+postgres=#
+postgres=# CREATE ROLE user2 WITH LOGIN SUPERUSER CREATEDB CREATERO
+postgres=# ;EPLICATION CONNECTION
+postgres=# CREATE ROLE user2 WITH LOGIN SUPERUSER CREATEDB CREATERO
+LE INHERIT REPLICATION CONNECTION LIMIT -1 PASSWORD 'user2';
+CREATE ROLE
+postgres=# \du
+                                    List of roles
+  Role name  |                         Attributes
+       | Member of
+-------------+-----------------------------------------------------
+-------+-----------
+ b20002user1 | Cannot login
+       | {}
+ b2002user2  | Superuser, Create DB
+       | {}
+ postgres    | Superuser, Create role, Create DB, Replication, Bypa
+ss RLS | {}
+ user1       | Cannot login
+       | {}
+ user2       | Superuser, Create role, Create DB, Replication
+       | {}
+
+
+postgres=# DROP user1;
+ERROR:  syntax error at or near "user1"
+LINE 1: DROP user1;
+             ^
+postgres=# \du
+                                    List of roles
+  Role name  |                         Attributes
+       | Member of
+-------------+-----------------------------------------------------
+-------+-----------
+ b20002user1 | Cannot login
+       | {}
+ b2002user2  | Superuser, Create DB
+       | {}
+ postgres    | Superuser, Create role, Create DB, Replication, Bypa
+ss RLS | {}
+ user1       | Cannot login
+       | {}
+ user2       | Superuser, Create role, Create DB, Replication
+       | {}
+
+
+postgres=# DROP ROLE user1;
+DROP ROLE
+postgres=# \du
+                                    List of roles
+  Role name  |                         Attributes
+       | Member of
+-------------+-----------------------------------------------------
+-------+-----------
+ b20002user1 | Cannot login
+       | {}
+ b2002user2  | Superuser, Create DB
+       | {}
+ postgres    | Superuser, Create role, Create DB, Replication, Bypa
+ss RLS | {}
+ user2       | Superuser, Create role, Create DB, Replication
+       | {}
+
+
+postgres=# psql -U user2
+postgres-# ;
+ERROR:  syntax error at or near "psql"
+LINE 1: psql -U user2
+        ^
+postgres=# psql -U user2
+postgres-# ;
+ERROR:  syntax error at or near "psql"
+LINE 1: psql -U user2
+        ^
+postgres=# psql -U user2;
+ERROR:  syntax error at or near "psql"
+LINE 1: psql -U user2;
+        ^
+postgres=# \c postgres user2
+Password for user user2:
+You are now connected to database "postgres" as user "user2".
+postgres=# ALTER USER user2 RENAME TO user1
+postgres-# ;
+ERROR:  session user cannot be renamed
+postgres=# psql -U user2
+postgres-# \c Postgres
+FATAL:  database "Postgres" does not exist
+Previous connection kept
+postgres-# \c postgres
+You are now connected to database "postgres" as user "user2".
+postgres-# \du
+                                    List of roles
+  Role name  |                         Attributes
+       | Member of
+-------------+-----------------------------------------------------
+-------+-----------
+ b20002user1 | Cannot login
+       | {}
+ b2002user2  | Superuser, Create DB
+       | {}
+ postgres    | Superuser, Create role, Create DB, Replication, Bypa
+ss RLS | {}
+ user2       | Superuser, Create role, Create DB, Replication
+       | {}
+
+
+postgres-# ;
+ERROR:  syntax error at or near "psql"
+LINE 1: psql -U user2
+        ^
+postgres=# \c postgres postgres
+Password for user postgres:
+You are now connected to database "postgres" as user "postgres".
+postgres=# \c postgres user2
+Password for user user2:
+You are now connected to database "postgres" as user "user2".
+postgres=# \c postgres postgres
+Password for user postgres:
+You are now connected to database "postgres" as user "postgres".
+postgres=# ALTER USER user2 RENAME TO user1
+postgres-# ;
+NOTICE:  MD5 password cleared because of role rename
+ALTER ROLE
+postgres=# \du
+                                    List of roles
+  Role name  |                         Attributes
+       | Member of
+-------------+-----------------------------------------------------
+-------+-----------
+ b20002user1 | Cannot login
+       | {}
+ b2002user2  | Superuser, Create DB
+       | {}
+ postgres    | Superuser, Create role, Create DB, Replication, Bypa
+ss RLS | {}
+ user1       | Superuser, Create role, Create DB, Replication
+       | {}
+
+
+postgres=# \c postgres user1
+Password for user user1:
+FATAL:  password authentication failed for user "user1"
+Previous connection kept
+postgres=# \c postgres user1
+Password for user user1:
+FATAL:  password authentication failed for user "user1"
+Previous connection kept
+postgres=# \c postgres user1
+Password for user user1:
+FATAL:  password authentication failed for user "user1"
+Previous connection kept
+postgres=#
+
+Fatema Akter@DESKTOP-UFISPR4 MINGW64 /c
+$ psql -U postgres
+Password for user postgres:
+psql (10.13)
+WARNING: Console code page (437) differs from Windows code page (12
+         8-bit characters might not work correctly. See psql refere
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+postgres=# \du
+                                    List of roles
+  Role name  |                         Attributes
+er of
+-------------+-----------------------------------------------------
+------
+ b20002user1 | Cannot login
+ b2002user2  | Superuser, Create DB
+ postgres    | Superuser, Create role, Create DB, Replication, Bypa
+
+
+     |   Access privileges
+-----------+----------+----------+----------------------------+----
+----------
+ dvdrental | postgres | UTF8     | English_United States.1252 | Eng
+
+
+
+
+
+         |   Access privileges
+-----------+----------+----------+----------------------------+----
+---------+-----------------------
+ dvdrental | postgres | UTF8     | English_United States.1252 | Eng
+tes.1252 |
+ family    | postgres | UTF8     | English_United States.1252 | Eng
+tes.1252 |
+ mydb      | postgres | UTF8     | English_United States.1252 | Eng
+tes.1252 |
+ postgres  | postgres | UTF8     | English_United States.1252 | Eng
+tes.1252 |
+ template0 | postgres | UTF8     | English_United States.1252 | Eng
+tes.1252 | =c/postgres          +
+           |          |          |                            |
+         | postgres=CTc/postgres
+ template1 | postgres | UTF8     | English_United States.1252 | Eng
+tes.1252 | =c/postgres          +
+           |          |          |                            |
+         | postgres=CTc/postgres
+(6 rows)
+
+
+postgres=# \du
+                                    List of roles
+
+
+
+
+
+
+
+
+
+
+                                     Role name  |
+       Attributes                         | Member of
+-------------+-----------------------------------------------------
+-------+-----------
+ b20002user1 | Cannot login
+       | {}
+ b2002user2  | Superuser, Create DB
+       | {}
+ postgres    | Superuser, Create role, Create DB, Replication, Bypa
+ss RLS | {}
+
+
+postgres=# CREATE ROLE user1;
+CREATE ROLECREATE ROLE user2 WITH LOGIN SUPERUSER CREATEDB CREATERO
+LE INHERIT REPLICATION CONNECTION ;WORD
+ERROR:  syntax error at or near ";" List of roles
+LINE 1: ...PERUSER CREATEDB CREATEROLE INHERIT REPLICATION CONNECTI
+ON ;   | Member of
+
+   ^---+-----------
+postgres-# ;
+ERROR:  syntax error at or near "WORD"
+LINE 1: WORD | Superuser, Create DB
+        ^{}
+postgres=#   | Superuser, Create role, Create DB, Replication, Bypa
+postgres=#
+postgres=#   | Cannot login
+postgres=#
+postgres=#
+postgres=#
+postgres=# CREATE ROLE user2 WITH LOGIN SUPERUSER CREATEDB CREATERO
+postgres=# ;EPLICATION CONNECTION
+postgres=# CREATE ROLE user2 WITH LOGIN SUPERUSER CREATEDB CREATERO
+LE INHERIT REPLICATION CONNECTION LIMIT -1 PASSWORD 'user2';
+CREATE ROLE
+postgres=# \du
+                                    List of roles
+  Role name  |                         Attributes
+       | Member of
+-------------+-----------------------------------------------------
+-------+-----------
+ b20002user1 | Cannot login
+       | {}
+ b2002user2  | Superuser, Create DB
+       | {}
+ postgres    | Superuser, Create role, Create DB, Replication, Bypa
+ss RLS | {}
+ user1       | Cannot login
+       | {}
+ user2       | Superuser, Create role, Create DB, Replication
+       | {}
+
+
+postgres=# DROP user1;
+ERROR:  syntax error at or near "user1"
+LINE 1: DROP user1;
+             ^
+postgres=# \du
+                                    List of roles
+  Role name  |                         Attributes
+       | Member of
+-------------+-----------------------------------------------------
+-------+-----------
+ b20002user1 | Cannot login
+       | {}
+ b2002user2  | Superuser, Create DB
+       | {}
+ postgres    | Superuser, Create role, Create DB, Replication, Bypa
+ss RLS | {}
+ user1       | Cannot login
+       | {}
+ user2       | Superuser, Create role, Create DB, Replication
+       | {}
+
+
+postgres=# DROP ROLE user1;
+DROP ROLE
+postgres=# \du
+                                    List of roles
+  Role name  |                         Attributes
+       | Member of
+-------------+-----------------------------------------------------
+-------+-----------
+ b20002user1 | Cannot login
+       | {}
+ b2002user2  | Superuser, Create DB
+       | {}
+ postgres    | Superuser, Create role, Create DB, Replication, Bypa
+ss RLS | {}
+ user2       | Superuser, Create role, Create DB, Replication
+       | {}
+
+
+postgres=# psql -U user2
+postgres-# ;
+ERROR:  syntax error at or near "psql"
+LINE 1: psql -U user2
+        ^
+postgres=# psql -U user2
+postgres-# ;
+ERROR:  syntax error at or near "psql"
+LINE 1: psql -U user2
+        ^
+postgres=# psql -U user2;
+ERROR:  syntax error at or near "psql"
+LINE 1: psql -U user2;
+        ^
+postgres=# \c postgres user2
+Password for user user2:
+You are now connected to database "postgres" as user "user2".
+postgres=# ALTER USER user2 RENAME TO user1
+postgres-# ;
+ERROR:  session user cannot be renamed
+postgres=# psql -U user2
+postgres-# \c Postgres
+FATAL:  database "Postgres" does not exist
+Previous connection kept
+postgres-# \c postgres
+You are now connected to database "postgres" as user "user2".
+postgres-# \du
+                                    List of roles
+  Role name  |                         Attributes
+       | Member of
+-------------+-----------------------------------------------------
+-------+-----------
+ b20002user1 | Cannot login
+       | {}
+ b2002user2  | Superuser, Create DB
+       | {}
+ postgres    | Superuser, Create role, Create DB, Replication, Bypa
+ss RLS | {}
+ user2       | Superuser, Create role, Create DB, Replication
+       | {}
+
+
+postgres-# ;
+ERROR:  syntax error at or near "psql"
+LINE 1: psql -U user2
+        ^
+postgres=# \c postgres postgres
+Password for user postgres:
+You are now connected to database "postgres" as user "postgres".
+postgres=# \c postgres user2
+Password for user user2:
+You are now connected to database "postgres" as user "user2".
+postgres=# \c postgres postgres
+Password for user postgres:
+You are now connected to database "postgres" as user "postgres".
+postgres=# ALTER USER user2 RENAME TO user1
+postgres-# ;
+NOTICE:  MD5 password cleared because of role rename
+ALTER ROLE
+postgres=# \du
+                                    List of roles
+  Role name  |                         Attributes
+       | Member of
+-------------+-----------------------------------------------------
+-------+-----------
+ b20002user1 | Cannot login
+       | {}
+ b2002user2  | Superuser, Create DB
+       | {}
+ postgres    | Superuser, Create role, Create DB, Replication, Bypa
+ss RLS | {}
+ user1       | Superuser, Create role, Create DB, Replication
+       | {}
+
+
+postgres=# \c postgres user1
+Password for user user1:
+FATAL:  password authentication failed for user "user1"
+Previous connection kept
+postgres=# \c postgres user1
+Password for user user1:
+FATAL:  password authentication failed for user "user1"
+Previous connection kept
+postgres=# \c postgres user1
+Password for user user1:
+FATAL:  password authentication failed for user "user1"
+Previous connection kept
+postgres=# \q
+
+Fatema Akter@DESKTOP-UFISPR4 MINGW64 /c
+$ psql -U postgres
+Password for user postgres:
+psql (10.13)
+WARNING: Console code page (437) differs from Windows code page (12
+52)
+         8-bit characters might not work correctly. See psql refere
+nce
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+postgres=# \du
+                                    List of roles
+  Role name  |                         Attributes
+       | Member of
+-------------+-----------------------------------------------------
+-------+-----------
+ b20002user1 | Cannot login
+       | {}
+ b2002user2  | Superuser, Create DB
+       | {}
+ postgres    | Superuser, Create role, Create DB, Replication, Bypa
+ss RLS | {}
+ user1       | Superuser, Create role, Create DB, Replication
+       | {}
+
+
+postgres=# \c postgres user1
+Password for user user1:
+FATAL:  password authentication failed for user "user1"
+Previous connection kept
+postgres=# \c postgres user1
+Password for user user1:
+FATAL:  password authentication failed for user "user1"
+Previous connection kept
+postgres=# \c postgres b2002user2
+Password for user b2002user2:
+You are now connected to database "postgres" as user "b2002user2".
+postgres=# \list
+                                                 List of databases
+   Name    |  Owner   | Encoding |          Collate           |
+       Ctype            |   Access privileges
+-----------+----------+----------+----------------------------+----
+------------------------+-----------------------
+ dvdrental | postgres | UTF8     | English_United States.1252 | Eng
+lish_United States.1252 |
+ family    | postgres | UTF8     | English_United States.1252 | Eng
+lish_United States.1252 |
+ mydb      | postgres | UTF8     | English_United States.1252 | Eng
+lish_United States.1252 |
+ postgres  | postgres | UTF8     | English_United States.1252 | Eng
+lish_United States.1252 |
+ template0 | postgres | UTF8     | English_United States.1252 | Eng
+lish_United States.1252 | =c/postgres          +
+           |          |          |                            |
+                        | postgres=CTc/postgres
+ template1 | postgres | UTF8     | English_United States.1252 | Eng
+lish_United States.1252 | =c/postgres          +
+           |          |          |                            |
+                        | postgres=CTc/postgres
+(6 rows)
+
+
+postgres=# select * from my db
+postgres-# ;
+ERROR:  relation "my" does not exist
+LINE 1: select * from my db
+                      ^
+postgres=# \c mydb
+You are now connected to database "mydb" as user "b2002user2".
+mydb=# \list
+                                                 List of databases
+   Name    |  Owner   | Encoding |          Collate           |
+       Ctype            |   Access privileges
+-----------+----------+----------+----------------------------+----
+------------------------+-----------------------
+ dvdrental | postgres | UTF8     | English_United States.1252 | Eng
+lish_United States.1252 |
+ family    | postgres | UTF8     | English_United States.1252 | Eng
+lish_United States.1252 |
+ mydb      | postgres | UTF8     | English_United States.1252 | Eng
+lish_United States.1252 |
+ postgres  | postgres | UTF8     | English_United States.1252 | Eng
+lish_United States.1252 |
+ template0 | postgres | UTF8     | English_United States.1252 | Eng
+lish_United States.1252 | =c/postgres          +
+           |          |          |                            |
+                        | postgres=CTc/postgres
+ template1 | postgres | UTF8     | English_United States.1252 | Eng
+lish_United States.1252 | =c/postgres          +
+           |          |          |                            |
+                        | postgres=CTc/postgres
+(6 rows)
+
+
+mydb=# \dt
+           List of relations
+ Schema |   Name   | Type  |   Owner
+--------+----------+-------+------------
+ public | mytable1 | table | postgres
+ public | mytable2 | table | b2002user2
+(2 rows)
+
+
+mydb=# select * from mytable1
+mydb-# SELECT * FROM mytable1;
+ERROR:  syntax error at or near "SELECT"
+LINE 2: SELECT * FROM mytable1;
+        ^
+mydb=# SELECT * FROM mytable1;
+ id |  name
+----+--------
+  1 | fatema
+  2 | ayesha
+  3 | mahdi
+(3 rows)
+
+
+mydb=# SELECT * FROM mytable2;
+ id | age |  address
+----+-----+-----------
+  1 |  20 | 202 ocean
+  2 |  10 | 202 ocean
+  3 |  15 | 202 ocean
+(3 rows)
+
+
+mydb=# SELECT age FROM mytable2;
+ age
+-----
+  20
+  10
+  15
+(3 rows)
+
+
+mydb=# SELECT  SELECT
+mydb-# ;
+ERROR:  syntax error at or near "SELECT"
+LINE 1: SELECT  SELECT
+                ^
+mydb=#  SELECT
+mydb-# ;
+--
+(1 row)
+
+
+mydb=# SELECT MAX(age) FROM mytable2;
+ max
+-----
+  20
+(1 row)
+
+
+mydb=# SELECT name FROM mytable2 WHERE age = 20;
+ERROR:  column "name" does not exist
+LINE 1: SELECT name FROM mytable2 WHERE age = 20;
+               ^
+HINT:  Perhaps you meant to reference the column "mytable2.age".
+mydb=# SELECT name FROM mytable2 WHERE age = '20';
+ERROR:  column "name" does not exist
+LINE 1: SELECT name FROM mytable2 WHERE age = '20';
+               ^
+HINT:  Perhaps you meant to reference the column "mytable2.age".
+mydb=# SELECT name FROM mytable2.age = 20;
+ERROR:  syntax error at or near "="
+LINE 1: SELECT name FROM mytable2.age = 20;
+                                      ^
+mydb=# SELECT name FROM mytable2.age = (20);
+ERROR:  syntax error at or near "="
+LINE 1: SELECT name FROM mytable2.age = (20);
+                                      ^
+mydb=# SELECT name FROM mytable1.mytable2 WHERE age = 20;
+ERROR:  relation "mytable1.mytable2" does not exist
+LINE 1: SELECT name FROM mytable1.mytable2 WHERE age = 20;
+                         ^
+mydb=#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    mydb=#
